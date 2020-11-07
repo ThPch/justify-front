@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import LoginForm from './Login/LoginForm';
+import UsersList from './User/UsersList'
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      users : [],
       currentUser : {}
     } 
 
@@ -16,12 +18,18 @@ class App extends React.Component {
 
   //When the component is mounted, we're gonna fetch the data from the API
   componentDidMount(){
-    const url = 'http://localhost:5000/home'
+    const url = 'http://localhost:5000/api/users'
 
-    axios.get(url)
+    axios.get(url, { 
+      headers : {
+        "Access-Control-Allow-Origin": "*"
+      },
+      crossdomain: true
+      })
       .then((res) => {
+        
         this.setState({
-          //Do some
+          users : res.data
         })
       })
       .catch((err) => {
@@ -38,8 +46,17 @@ class App extends React.Component {
   render () {
     return (
       <div className="container-fluid">
-        <div>
-          <LoginForm/>
+        <div className="row">
+          <div className="col s12">Menu</div>
+        </div>
+        <div className="row">
+          <div className="col s3">
+            <UsersList users={this.state.users}
+          updateCurrentUser={this.updateCurrentUser}/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col s12"><LoginForm/></div>
         </div>
       </div>
     );
