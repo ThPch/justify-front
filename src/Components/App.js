@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      token : {},
       users : [],
       currentUser : {}
     } 
@@ -47,7 +48,11 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col s12">Menu</div>
+        <nav>
+          <div className="nav-wrapper blue darken-4">
+            <a href="#" className="brand-logo">Justify Machine</a>
+          </div>
+        </nav>
         </div>
         <div className="row">
           <div className="col s3">
