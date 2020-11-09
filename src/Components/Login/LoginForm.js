@@ -2,6 +2,15 @@ import React from 'react';
 import axios from 'axios';
 
 class LoginForm extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            textJustify: ""
+        }
+
+        this.submitForm = this.submitForm.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
     submitForm = (event) => {
         event.preventDefault();
 
@@ -12,7 +21,7 @@ class LoginForm extends React.Component {
                 "Authorization": "Basic " + Buffer.from("credentials.clientId" + ':' + "coucou").toString('base64')
             },
             data:{
-                text: this.textJustify.value
+                text: this.state.textJustify
             }
         })
         .then((response) => {
@@ -22,6 +31,11 @@ class LoginForm extends React.Component {
             console.log(err);
         })
     }
+
+    handleChange(event) {
+        this.setState({textJustify: event.target.value});
+    }
+
     render() { 
         return ( 
         <form className="col s12" onSubmit={this.submitForm.bind(this)}>
@@ -33,7 +47,8 @@ class LoginForm extends React.Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <textarea id="textJustify" name="textJustify" className="materialize-textarea" data-length="1000" placeholder="Paste your text here" ></textarea>
+                  <textarea id="textJustify" name="textJustify" className="materialize-textarea" data-length="1000" placeholder="Paste your text here"
+                   onChange={this.handleChange}></textarea>
                   <label htmlFor="textJustify" >Texte à justifier :</label>
                 </div>
               </div>
