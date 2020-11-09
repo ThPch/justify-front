@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import LoginForm from './Login/LoginForm';
 import UsersList from './User/UsersList'
+import UserCard from './User/UserCard';
 
 class App extends React.Component {
   constructor(props){
@@ -58,6 +59,9 @@ class App extends React.Component {
           <div className="col s3">
             <UsersList users={this.state.users}
           updateCurrentUser={this.updateCurrentUser}/>
+          </div>
+          <div className="col s9">
+            <UserCard currentUser={this.state.currentUser}/>
           </div>
         </div>
         <div className="row">
