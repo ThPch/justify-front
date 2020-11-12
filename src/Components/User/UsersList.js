@@ -10,7 +10,7 @@ const UsersList = (props) => {
                 <span className="title" key={user._id}><strong>ID : </strong> {user._id}</span>
                 <br />
                 <p><strong>Email : </strong>{user.email}</p>
-                <a className="waves-effect waves-light btn-small" onClick={props.updateCurrentUser.bind(this, user)}> Update Current User : {user.name} </a>
+                <a className="waves-effect waves-light btn-small" onClick={props.updateCurrentUser.bind(this, user)}> Check profile </a>
                 </li>
             })}
         </ul>
