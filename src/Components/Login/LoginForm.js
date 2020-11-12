@@ -5,7 +5,9 @@ class LoginForm extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            textJustify: ""
+            textJustify: "",
+            textJustified : "",
+            accessToken : ""
         }
 
         this.submitForm = this.submitForm.bind(this);
@@ -18,8 +20,8 @@ class LoginForm extends React.Component {
         
         try{
             const response = await axios.post('http://localhost:5000/api/justify',{data: this.state.textJustify})
-            const data = await response.data
-            console.log(data)
+            this.state.textJustified = await response.data
+            this.setState({ textJustified: this.state.textJustified })
         }
         catch(err){
             console.log(err)
@@ -42,10 +44,13 @@ class LoginForm extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="input-field col s12">
-                  <textarea id="textJustify" name="textJustify" className="materialize-textarea" data-length="1000" placeholder="Paste your text here"
+                <div className="input-field col s6">
+                  <textarea id="textJustify" name="textJustify" className="materialize-textarea" placeholder="Paste your text here"
                    onChange={this.handleChange}></textarea>
                   <label htmlFor="textJustify" >Texte à justifier :</label>
+                </div>
+                <div className="input-field col s6">
+                    <div name="textJustified" id="textJustified" className="card-panel teal lighten-2">{this.state.textJustified}</div>
                 </div>
               </div>
               <button className="btn waves-effect waves-light" type="submit"
