@@ -13,15 +13,19 @@ class LoginForm extends React.Component {
     }
     submitForm = (event) => {
         event.preventDefault();
-
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpY3RhY0B0cmlwLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA4JE1Nc2tTR2w1YUxFbVZzemNtc3d4d08xVjMueUVXMzkwbmliZFFjckFpLkZqcDA2ckxUTWRxIiwiaWF0IjoxNjA1MTc5NDc0fQ.zoXUdP4mfvVEwYm94xOb5D6-GWmQ06gd0tJvvhOPUOc"
+        axios.defaults.headers.common['Authorization'] =`Bearer ${accessToken}`;
         axios.post('http://localhost:5000/api/justify',
         {
             headers: {
-                'Content-Type': "application/json",
-                "Authorization": "Basic " + Buffer.from("credentials.clientId" + ':' + "coucou").toString('base64')
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+
             },
-            data:{
-                text: this.state.textJustify
+            crossdomain: true,
+            body:{
+                data: this.state.textJustify
             }
         })
         .then((response) => {
