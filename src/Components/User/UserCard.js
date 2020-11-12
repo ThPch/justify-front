@@ -41,10 +41,11 @@ class UserCard extends React.Component {
           
           let accessTokenRes = await response.data.accessToken
           this.setState({ accessToken: accessTokenRes })
-          this.props.accessToken(accessTokenRes);
+          this.props.accessToken(accessTokenRes)
+  
       }
       catch(err){
-          console.log(err)
+          alert(err)
       }
     }
 

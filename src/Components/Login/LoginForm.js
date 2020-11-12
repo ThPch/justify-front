@@ -39,12 +39,6 @@ class LoginForm extends React.Component {
         <form className="col s12" onSubmit={this.submitForm.bind(this)}>
               <div className="row">
                 <div className="input-field col s6">
-                  <input id="input_number" type="number" data-length="2" placeholder="80"/>
-                  <label htmlFor="input_number">Number of spacing : </label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s6">
                   <textarea id="textJustify" name="textJustify" className="materialize-textarea" placeholder="Paste your text here"
                    onChange={this.handleChange}></textarea>
                   <label htmlFor="textJustify" >Texte à justifier :</label>

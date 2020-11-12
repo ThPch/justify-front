@@ -11,11 +11,14 @@ class App extends React.Component {
     this.state = {
       accessToken : '',
       users : [],
-      currentUser : {}
+      currentUser : {},
+      showHideUserCard : false,
+      showLoginForm : false
     } 
 
     //Way to make sure that we can use this on a class
     this.updateCurrentUser = this.updateCurrentUser.bind(this);
+
   }
 
   //When the component is mounted, we're gonna fetch the data from the API
@@ -41,13 +44,14 @@ class App extends React.Component {
   }
 
   updateToken = (data) =>{
-    this.setState({accessToken: data})
+    this.setState({accessToken: data, showLoginForm:true})
     alert("Token Updated");
   }
 
   updateCurrentUser(item){
     this.setState({
-      currentUser : item
+      currentUser : item,
+      showHideUserCard : true
     })
   }
 
@@ -67,11 +71,15 @@ class App extends React.Component {
           updateCurrentUser={this.updateCurrentUser}/>
           </div>
           <div className="col s9">
+          {this.state.showHideUserCard && (
             <UserCard currentUser={this.state.currentUser} accessToken={this.updateToken}/>
+          )}
           </div>
         </div>
         <div className="row">
-          <div className="col s12"><LoginForm accessToken={this.state.accessToken}/></div>
+        {this.state.showLoginForm && (
+            <div className="col s12"><LoginForm accessToken={this.state.accessToken}/></div>
+        )}
         </div>
       </div>
     );
