@@ -5,15 +5,19 @@ class UserCard extends React.Component {
     constructor(props){
       super(props)
       this.state = {
-          accessToken: "",
-          currentUser : {}
+          accessToken: '',
+          currentUser : {},
+          password: ''
       }
 
       this.submitForm = this.submitForm.bind(this);
-      if(props){
-        // console.log(props) 
-      }
-     
+      this.updatePswd = this.updatePswd.bind(this);
+  }
+
+  updatePswd = (evt) => {
+    this.setState({
+      password: evt.target.value
+    });
   }
 
   submitForm = async (event) => {
@@ -25,8 +29,8 @@ class UserCard extends React.Component {
       try{
           const response = await axios.post('http://localhost:5000/api/token',
           {
-            "email": "tictac@trip.com",
-            "password": "voyage2020"
+            "email": this.props.currentUser.email,
+            "password": this.state.password
           },
             {
               headers: {
@@ -36,7 +40,8 @@ class UserCard extends React.Component {
           )
           
           let accessToken = await response.data.accessToken
-          this.setState({ accessToken: this.state.accessToken })
+          this.setState({ accessToken: accessToken })
+          console.log(accessToken)
       }
       catch(err){
           console.log(err)
@@ -55,7 +60,7 @@ class UserCard extends React.Component {
               </div>
               <div className="card-action col s12">
                 <a className="col s6" href="#">{this.props.currentUser.name}</a>
-                <input type="password" id="password"></input>
+                <input type="password" id="password" value ={this.state.password} onChange={this.updatePswd}/>
                 
                 <button className="waves-effect waves-light btn-small" type="submit"
               name="action">update Token</button>
