@@ -2,9 +2,7 @@
 
 This web application is made to be connected with the justify-api available at : https://github.com/ThPch/justify-api.git
 
-## Installing
-
-cloning https://github.com/ThPch/justify-api.git
+## Install & Run
 
 ```
 cloning https://github.com/ThPch/justify-api.git
