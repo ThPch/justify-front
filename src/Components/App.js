@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      token : {},
+      accessToken : '',
       users : [],
       currentUser : {}
     } 
@@ -40,6 +40,11 @@ class App extends React.Component {
       
   }
 
+  updateToken = (data) =>{
+    this.setState({accessToken: data})
+    alert("Token Updated");
+  }
+
   updateCurrentUser(item){
     this.setState({
       currentUser : item
@@ -62,11 +67,11 @@ class App extends React.Component {
           updateCurrentUser={this.updateCurrentUser}/>
           </div>
           <div className="col s9">
-            <UserCard currentUser={this.state.currentUser}/>
+            <UserCard currentUser={this.state.currentUser} accessToken={this.updateToken}/>
           </div>
         </div>
         <div className="row">
-          <div className="col s12"><LoginForm/></div>
+          <div className="col s12"><LoginForm accessToken={this.state.accessToken}/></div>
         </div>
       </div>
     );

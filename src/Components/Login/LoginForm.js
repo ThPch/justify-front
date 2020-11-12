@@ -15,7 +15,7 @@ class LoginForm extends React.Component {
     }
     submitForm = async (event) => {
         event.preventDefault();
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpY3RhY0B0cmlwLmNvbSIsInBhc3N3b3JkIjoiJDJhJDA4JE1Nc2tTR2w1YUxFbVZzemNtc3d4d08xVjMueUVXMzkwbmliZFFjckFpLkZqcDA2ckxUTWRxIiwiaWF0IjoxNjA1MTc5NDc0fQ.zoXUdP4mfvVEwYm94xOb5D6-GWmQ06gd0tJvvhOPUOc"
+        let accessToken = this.props.accessToken
         axios.defaults.headers.common['Authorization'] =`Bearer ${accessToken}`;
         
         try{

@@ -20,9 +20,9 @@ class UserCard extends React.Component {
     });
   }
 
+
   submitForm = async (event) => {
       event.preventDefault();
-      let accessToken;
       //console.log(this.state.currentUser)
       console.log(this.props)
       
@@ -39,9 +39,9 @@ class UserCard extends React.Component {
             }
           )
           
-          let accessToken = await response.data.accessToken
-          this.setState({ accessToken: accessToken })
-          console.log(accessToken)
+          let accessTokenRes = await response.data.accessToken
+          this.setState({ accessToken: accessTokenRes })
+          this.props.accessToken(accessTokenRes);
       }
       catch(err){
           console.log(err)
